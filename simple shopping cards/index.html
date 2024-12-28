@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <title>My Website</title>
+    
+    <link rel="shortcut icon" href="assets/cart.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css" />
+
+</head>
+
+<body>
+    <nav>
+        <span class="logo">Shopper</span>
+        <button class="btn-primary mr-30 pr-10">
+            <img src="./assets/cart.png" /> Shop now
+        </button>
+    </nav>
+    <span class="title">Explore More</span>
+
+    <div class="row">
+        <div id="sneaker" class="chip pr-10"><img src="./assets/Sneaker.jpg" alt="" /> Sneaker</div>
+        <div id="hoodie" class="chip pr-10"><img src="./assets/Hoodie.jpg" alt="" /> Hoodie</div>
+        <div id="trouser" class="chip pr-10"><img src="./assets/Trousers.jpg" alt="" /> Trousers</div>
+    </div>
+    <div id="cards" class="cards"></div>
+        <div id="dialog" class="dialog-window">
+            <div class="rows">
+                <img src="./assets/cart.png" alt="" class="dialog-img" />
+                <span class="nameCart">Shopping Cart</span>
+            </div>
+            <span class="titleCart">Hello there! 👋</span>
+            <span class="message">Your Product in Cart Now 👍</span>
+        </div>
+    <div class="action-bar">
+        <button class="btn-secondary"><i class="bi bi-credit-card"></i></button>
+        <button class="btn-secondary primary-action"><i class="bi bi-bag"></i></button>
+        <button class="btn-secondary"><i class="bi bi-heart"></i></button>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

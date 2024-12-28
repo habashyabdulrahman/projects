@@ -1,0 +1,219 @@
+{
+    "sneakers": [
+    {
+        "id": 1,
+        "name": "Sneaker MK1",
+        "price": 100,
+        "description": "Great boots!",
+        "image": "./assets/Sneaker.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Sneaker MK2",
+        "price": 200,
+        "description": "Great boots!",
+        "image": "./assets/Sneaker.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Sneaker MK3",
+        "price": 300,
+        "description": "Great boots!",
+        "image": "./assets/Sneaker.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Sneaker MK4",
+        "price": 400,
+        "description": "Great boots!",
+        "image": "./assets/Sneaker.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Sneaker MK5",
+        "price": 500,
+        "description": "Great boots!",
+        "image": "./assets/Sneaker.jpg"
+    },
+    {
+        "id": 6,
+        "name": "Sneaker MK6",
+        "price": 600,
+        "description": "Great boots!",
+        "image": "./assets/Sneaker.jpg"
+    },
+    {
+        "id": 7,
+        "name": "Sneaker MK7",
+        "price": 700,
+        "description": "Great boots!",
+        "image": "./assets/Sneaker.jpg"
+    },
+    {
+        "id": 8,
+        "name": "Sneaker MK8",
+        "price": 800,
+        "description": "Great boots!",
+        "image": "./assets/Sneaker.jpg"
+    },
+    {
+        "id": 9,
+        "name": "Sneaker MK9",
+        "price": 900,
+        "description": "Great boots!",
+        "image": "./assets/Sneaker.jpg"
+    },
+    {
+        "id": 10,
+        "name": "Sneaker MK10",
+        "price": 1000,
+        "description": "Great boots!",
+        "image": "./assets/Sneaker.jpg"
+    }
+    ],
+    "hoodies": [
+    {
+        "id": 1,
+        "name": "Hoodie",
+        "price": 100,
+        "description": "Great boots!",
+        "image": "./assets/Hoodie.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Hoodie",
+        "price": 200,
+        "description": "Great boots!",
+        "image": "./assets/Hoodie.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Hoodie",
+        "price": 300,
+        "description": "Great boots!",
+        "image": "./assets/Hoodie.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Hoodie",
+        "price": 400,
+        "description": "Great boots!",
+        "image": "./assets/Hoodie.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Hoodie",
+        "price": 500,
+        "description": "Great boots!",
+        "image": "./assets/Hoodie.jpg"
+    },
+    {
+        "id": 6,
+        "name": "Hoodie",
+        "price": 600,
+        "description": "Great boots!",
+        "image": "./assets/Hoodie.jpg"
+    },
+    {
+        "id": 7,
+        "name": "Hoodie",
+        "price": 700,
+        "description": "Great boots!",
+        "image": "./assets/Hoodie.jpg"
+    },
+    {
+        "id": 8,
+        "name": "Hoodie",
+        "price": 800,
+        "description": "Great boots!",
+        "image": "./assets/Hoodie.jpg"
+    },
+    {
+        "id": 9,
+        "name": "Hoodie",
+        "price": 900,
+        "description": "Great boots!",
+        "image": "./assets/Hoodie.jpg"
+    },
+    {
+        "id": 10,
+        "name": "Hoodie",
+        "price": 1000,
+        "description": "Great boots!",
+        "image": "./assets/Hoodie.jpg"
+    }
+    ],
+    "trousers": [
+    {
+        "id": 1,
+        "name": "Trousers",
+        "price": 100,
+        "description": "Great boots!",
+        "image": "./assets/Trousers.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Trousers",
+        "price": 200,
+        "description": "Great boots!",
+        "image": "./assets/Trousers.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Trousers",
+        "price": 300,
+        "description": "Great boots!",
+        "image": "./assets/Trousers.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Trousers",
+        "price": 400,
+        "description": "Great boots!",
+        "image": "./assets/Trousers.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Trousers",
+        "price": 500,
+        "description": "Great boots!",
+        "image": "./assets/Trousers.jpg"
+    },
+    {
+        "id": 6,
+        "name": "Trousers",
+        "price": 600,
+        "description": "Great boots!",
+        "image": "./assets/Trousers.jpg"
+    },
+    {
+        "id": 7,
+        "name": "Trousers",
+        "price": 700,
+        "description": "Great boots!",
+        "image": "./assets/Trousers.jpg"
+    },
+    {
+        "id": 8,
+        "name": "Trousers",
+        "price": 800,
+        "description": "Great boots!",
+        "image": "./assets/Trousers.jpg"
+    },
+    {
+        "id": 9,
+        "name": "Trousers",
+        "price": 900,
+        "description": "Great boots!",
+        "image": "./assets/Trousers.jpg"
+    },
+    {
+        "id": 10,
+        "name": "Trousers",
+        "price": 1000,
+        "description": "Great boots!",
+        "image": "./assets/Trousers.jpg"
+    }
+    ]
+}
+
