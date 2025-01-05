@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Changa:wght@200..800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Changa", serif;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.purple,
+.peach,
+.ocean,
+.sunset,
+.grass,
+.night,
+.synthwave {
+    width: 100%;
+    height: 100vh;
+    font-size: 3rem;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.purple {
+    background-image: linear-gradient(to bottom right, #6889FF, #C668FF);
+}
+
+.peach {
+    background-image: linear-gradient(to bottom right, #FF6868, #FF68DE);
+}
+
+.ocean {
+    background-image: linear-gradient(to bottom right, #5B7FFF, #33CCFC);
+}
+
+.sunset {
+    background-image: linear-gradient(to bottom right, #FDC639, #FF7C60);
+}
+
+.grass {
+    background-image: linear-gradient(to bottom right, #45C270, #21CDC3);
+}
+
+.night {
+    background-image: linear-gradient(to bottom right, #403F44, #1E1B32);
+}
+
+.synthwave {
+    background-image: linear-gradient(
+        to bottom right, #FF9E68, #FF68DE
+    );
+}
+
+/* النافذة المنبثقة */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background: white;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 20px;
+    z-index: 20;
+    width: 50%;
+    height: 150px;
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.4s ease-out;
+}
+
+.popup.show {
+    display: block;
+    /* يجب أن يظهر العنصر أولاً */
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    /* تحديد مكانه النهائي */
+}
+
+/* محتوى النافذة */
+.popup-content {
+    position: relative;
+    opacity: 1;
+    /* تأكد من أنها تظهر مع النافذة */
+    transition: none;
+    /* لا تستخدم تأخير إضافي هنا */
+}
+
+#code-snippet {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+}
+
+.close-btn {
+    position: absolute;
+    top: -30px;
+    right: -5px;
+    font-size: 35px;
+    cursor: pointer;
+    color: #888;
+}
+
+.close-btn:hover {
+    color: #000;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 65px;
+    left: 10px;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.copy-btn:hover {
+    background-color: #218838;
+}
+
+/* تأثير الظهور */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}

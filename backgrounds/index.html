@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Gradients</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="purple"
+            onclick="showPopup('background-image: linear-gradient(to bottom right, #6889FF, #C668FF);')">purple</div>
+        <div class="peach" onclick="showPopup('background-image: linear-gradient(to bottom right, #FF6868, #FF68DE);')">
+            peach</div>
+        <div class="ocean" onclick="showPopup('background-image: linear-gradient(to bottom right, #5B7FFF, #33CCFC);')">
+            ocean</div>
+        <div class="sunset"
+            onclick="showPopup('background-image: linear-gradient(to bottom right, #FDC639, #FF7C60);')">sunset</div>
+        <div class="grass" onclick="showPopup('background-image: linear-gradient(to bottom right, #45C270, #21CDC3);')">
+            grass</div>
+        <div class="night" onclick="showPopup('background-image: linear-gradient(to bottom right, #403F44, #1E1B32);')">
+            night</div>
+        <div class="synthwave"
+            onclick="showPopup('background-image: linear-gradient(to bottom right, #FF9E68, #FF68DE);')">synthwave</div>
+    </div>
+
+    <!-- النافذة المنبثقة -->
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">×</span>
+            <code id="code-snippet"></code>
+            <button class="copy-btn" onclick="copyCode()">Copy</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
