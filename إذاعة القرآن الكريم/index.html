@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>إذاعة القرآن الكريم</title>
+    <!-- iOS PWA meta tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="إذاعة القرآن">
+    <!-- iOS icons -->
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icon-152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="icon-167.png">
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
+        
+        :root {
+            --primary-color: #1f6e43;
+            --secondary-color: #3b9969;
+            --background-color: #f8f9fa;
+            --text-color: #2c3e50;
+            --accent-color: #f1c40f;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            background-color: var(--background-color);
+            font-family: 'Amiri', Arial, sans-serif;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            color: var(--text-color);
+        }
+        
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            width: 100%;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 20px;
+            max-width: 600px;
+        }
+        
+        .player-container {
+            text-align: center;
+            padding: 25px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        
+        .station-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            border: 4px solid var(--primary-color);
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+        }
+        
+        .station-logo i {
+            font-size: 50px;
+            color: var(--primary-color);
+        }
+        
+        .player-title {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .custom-player {
+            margin: 20px 0;
+        }
+        
+        .player-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+        }
+        
+        .control-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin: 0 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .control-btn:hover, .control-btn.active {
+            background-color: var(--secondary-color);
+            transform: scale(1.05);
+        }
+        
+        .control-btn i {
+            font-size: 24px;
+        }
+        
+        .play-btn {
+            width: 70px;
+            height: 70px;
+        }
+        
+        .play-btn i {
+            font-size: 30px;
+        }
+        
+        .volume-container {
+            margin: 15px 0;
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        .volume-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 5px;
+            border-radius: 5px;
+            background: #ddd;
+            outline: none;
+        }
+        
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+        }
+        
+        .now-playing {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: rgba(241, 196, 15, 0.1);
+            border-radius: 10px;
+            border-right: 3px solid var(--accent-color);
+        }
+        
+        .player-status {
+            font-size: 0.9rem;
+            color: #777;
+            margin-top: 10px;
+        }
+        
+        .stations-container {
+            width: 100%;
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stations-title {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 1.3rem;
+        }
+        
+        .stations-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .station-item {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.2s ease;
+        }
+        
+        .station-item:last-child {
+            border-bottom: none;
+        }
+        
+        .station-item:hover {
+            background-color: rgba(31, 110, 67, 0.05);
+        }
+        
+        .station-item.active {
+            background-color: rgba(31, 110, 67, 0.1);
+            border-right: 3px solid var(--primary-color);
+        }
+        
+        .station-icon {
+            margin-left: 10px;
+            color: var(--primary-color);
+        }
+        
+        .station-name {
+            flex: 1;
+        }
+        
+        .loading-indicator {
+            display: none;
+            margin: 10px 0;
+        }
+        
+        .loading-indicator.visible {
+            display: block;
+            color: var(--primary-color);
+        }
+        
+        .spinner {
+            animation: spin 1.5s linear infinite;
+            display: inline-block;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* For mobile devices */
+        @media (max-width: 480px) {
+            .player-container, .stations-container {
+                padding: 15px;
+            }
+            
+            .station-logo {
+                width: 90px;
+                height: 90px;
+            }
+            
+            .player-title {
+                font-size: 1.3rem;
+            }
+            
+            .control-btn {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .play-btn {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .header h1 {
+                font-size: 1.5rem;
+            }
+        }
+        
+        /* Dark mode */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background-color: #1a1a1a;
+                --text-color: #f5f5f5;
+            }
+            
+            .player-container, .stations-container {
+                background-color: #2a2a2a;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            }
+            
+            .station-logo {
+                background-color: #333;
+            }
+            
+            .station-item {
+                border-bottom: 1px solid #333;
+            }
+            
+            .station-item:hover {
+                background-color: rgba(31, 110, 67, 0.15);
+            }
+            
+            .station-item.active {
+                background-color: rgba(31, 110, 67, 0.2);
+            }
+            
+            .volume-slider {
+                background: #444;
+            }
+            
+            .now-playing {
+                background-color: rgba(241, 196, 15, 0.05);
+            }
+            
+            .player-status {
+                color: #aaa;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>إذاعة القرآن الكريم</h1>
+    </div>
+    
+    <div class="main-content">
+        <div class="player-container">
+            <div class="station-logo">
+                <i class="fas fa-quran"></i>
+            </div>
+            <h2 class="player-title">استمع للقرآن الكريم</h2>
+            
+            <div class="custom-player">
+                <div class="player-controls">
+                    <button class="control-btn" id="prevBtn" title="المحطة السابقة">
+                        <i class="fas fa-step-backward"></i>
+                    </button>
+                    <button class="control-btn play-btn" id="playBtn" title="تشغيل/إيقاف">
+                        <i class="fas fa-play" id="playIcon"></i>
+                    </button>
+                    <button class="control-btn" id="nextBtn" title="المحطة التالية">
+                        <i class="fas fa-step-forward"></i>
+                    </button>
+                </div>
+                
+                <div class="volume-container">
+                    <input type="range" min="0" max="100" value="80" class="volume-slider" id="volumeSlider">
+                </div>
+                
+                <div class="loading-indicator" id="loadingIndicator">
+                    <i class="fas fa-circle-notch spinner"></i> جاري التحميل...
+                </div>
+                
+                <div class="now-playing">
+                    <div id="currentStation">إذاعة القرآن الكريم مصر</div>
+                    <div class="player-status" id="playerStatus">متوقف</div>
+                </div>
+            </div>
+            
+            <audio id="quranPlayer">
+                <source src="https://n0c.radiojar.com/8s5u5tpdtwzuv" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        
+        <div class="stations-container">
+            <h3 class="stations-title">محطات القرآن الكريم</h3>
+            <ul class="stations-list" id="stationsList">
+                <li class="station-item active" data-url="https://n0c.radiojar.com/8s5u5tpdtwzuv">
+                    <span class="station-icon"><i class="fas fa-broadcast-tower"></i></span>
+                    <span class="station-name">إذاعة القرآن الكريم مصر</span>
+                </li>
+                <li class="station-item" data-url="https://stream.radiojar.com/7csmg90fuqruv">
+                    <span class="station-icon"><i class="fas fa-broadcast-tower"></i></span>
+                    <span class="station-name">إذاعة القرآن الكريم السعودية</span>
+                </li>
+                <li class="station-item" data-url="https://n02.radiojar.com/4wqre23fytzuv">
+                    <span class="station-icon"><i class="fas fa-broadcast-tower"></i></span>
+                    <span class="station-name">إذاعة تلاوات قرآنية</span>
+                </li>
+                <li class="station-item" data-url="https://streams.radio.co/s8e33c1773/listen">
+                    <span class="station-icon"><i class="fas fa-broadcast-tower"></i></span>
+                    <span class="station-name">إذاعة القارئ عبد الباسط عبد الصمد</span>
+                </li>
+                <li class="station-item" data-url="https://backup.qurango.net/radio/maher">
+                    <span class="station-icon"><i class="fas fa-broadcast-tower"></i></span>
+                    <span class="station-name">إذاعة القارئ ماهر المعيقلي</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const player = document.getElementById('quranPlayer');
+            const playBtn = document.getElementById('playBtn');
+            const playIcon = document.getElementById('playIcon');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const volumeSlider = document.getElementById('volumeSlider');
+            const stationsList = document.getElementById('stationsList');
+            const stationItems = document.querySelectorAll('.station-item');
+            const currentStation = document.getElementById('currentStation');
+            const playerStatus = document.getElementById('playerStatus');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            
+            let isPlaying = false;
+            let currentIndex = 0;
+            
+            // Set initial volume
+            player.volume = volumeSlider.value / 100;
+            
+            // Play/Pause function
+            function togglePlay() {
+                if (isPlaying) {
+                    player.pause();
+                    playIcon.className = 'fas fa-play';
+                    playerStatus.textContent = 'متوقف';
+                    isPlaying = false;
+                } else {
+                    loadingIndicator.classList.add('visible');
+                    playerStatus.textContent = 'جاري التحميل...';
+                    
+                    player.play().then(() => {
+                        playIcon.className = 'fas fa-pause';
+                        playerStatus.textContent = 'يعمل الآن';
+                        isPlaying = true;
+                        loadingIndicator.classList.remove('visible');
+                    }).catch(error => {
+                        console.error('Error playing audio:', error);
+                        loadingIndicator.classList.remove('visible');
+                        playerStatus.textContent = 'حدث خطأ في التشغيل';
+                    });
+                }
+            }
+            
+            // Change station function
+            function changeStation(index) {
+                if (index < 0) {
+                    index = stationItems.length - 1;
+                } else if (index >= stationItems.length) {
+                    index = 0;
+                }
+                
+                currentIndex = index;
+                
+                // Update active station in list
+                stationItems.forEach((item, i) => {
+                    if (i === currentIndex) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                // Update player source
+                const newSource = stationItems[currentIndex].getAttribute('data-url');
+                player.src = newSource;
+                currentStation.textContent = stationItems[currentIndex].querySelector('.station-name').textContent;
+                
+                // If was playing, continue playing new station
+                if (isPlaying) {
+                    loadingIndicator.classList.add('visible');
+                    playerStatus.textContent = 'جاري التحميل...';
+                    
+                    player.play().then(() => {
+                        loadingIndicator.classList.remove('visible');
+                        playerStatus.textContent = 'يعمل الآن';
+                    }).catch(error => {
+                        console.error('Error playing audio:', error);
+                        loadingIndicator.classList.remove('visible');
+                        playerStatus.textContent = 'حدث خطأ في التشغيل';
+                    });
+                }
+            }
+            
+            // Event listeners
+            playBtn.addEventListener('click', togglePlay);
+            
+            prevBtn.addEventListener('click', function() {
+                changeStation(currentIndex - 1);
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                changeStation(currentIndex + 1);
+            });
+            
+            volumeSlider.addEventListener('input', function() {
+                player.volume = this.value / 100;
+            });
+            
+            stationItems.forEach((item, index) => {
+                item.addEventListener('click', function() {
+                    changeStation(index);
+                    if (!isPlaying) {
+                        togglePlay();
+                    }
+                });
+            });
+            
+            // Handle audio events
+            player.addEventListener('playing', function() {
+                loadingIndicator.classList.remove('visible');
+                playerStatus.textContent = 'يعمل الآن';
+            });
+            
+            player.addEventListener('waiting', function() {
+                loadingIndicator.classList.add('visible');
+                playerStatus.textContent = 'جاري التحميل...';
+            });
+            
+            player.addEventListener('error', function() {
+                loadingIndicator.classList.remove('visible');
+                playerStatus.textContent = 'حدث خطأ في التشغيل';
+                playIcon.className = 'fas fa-play';
+                isPlaying = false;
+            });
+            
+            // Handle keyboard shortcuts
+            document.addEventListener('keydown', function(event) {
+                if (event.code === 'Space') {
+                    event.preventDefault();
+                    togglePlay();
+                } else if (event.code === 'ArrowLeft') {
+                    changeStation(currentIndex - 1);
+                } else if (event.code === 'ArrowRight') {
+                    changeStation(currentIndex + 1);
+                } else if (event.code === 'ArrowUp') {
+                    volumeSlider.value = Math.min(100, parseInt(volumeSlider.value) + 10);
+                    player.volume = volumeSlider.value / 100;
+                } else if (event.code === 'ArrowDown') {
+                    volumeSlider.value = Math.max(0, parseInt(volumeSlider.value) - 10);
+                    player.volume = volumeSlider.value / 100;
+                }
+            });
+            
+            // Add service worker for better offline experience
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                    navigator.serviceWorker.register('sw.js').then(function() {
+                        console.log('Service Worker registered successfully');
+                    }).catch(function(error) {
+                        console.log('Service Worker registration failed:', error);
+                    });
+                });
+            }
+            
+            // Handle visibility change to pause when tab is hidden
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden && isPlaying) {
+                    // Only pause, don't toggle state - we'll resume when visible again
+                    player.pause();
+                    playIcon.className = 'fas fa-play';
+                } else if (!document.hidden && isPlaying) {
+                    player.play().then(() => {
+                        playIcon.className = 'fas fa-pause';
+                    }).catch(err => {
+                        console.error('Error resuming playback:', err);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
